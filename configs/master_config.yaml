@@ -19,12 +19,12 @@ websocket:
 
 # 数据库配置
 database:
-  type: sqlite  # sqlite / postgresql / mysql
-  host: localhost
-  port: 5432
-  name: goetia
-  user: ${env:DB_USER,goetia}
-  password: ${env:DB_PASSWORD,}
+  type: mysql  # sqlite / postgresql / mysql
+  host: 127.0.0.1
+  port: 19630
+  name: test-dev
+  user: zzxl
+  password: user123456
   pool_size: 10
   echo: false
 

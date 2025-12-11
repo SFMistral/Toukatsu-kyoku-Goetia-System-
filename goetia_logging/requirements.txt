@@ -1,0 +1,33 @@
+# Logging 模块依赖项
+
+# 核心依赖 (必需)
+# Python 标准库模块，无需额外安装:
+# - os, sys, time, threading, json, re, gzip, shutil, zipfile
+# - abc, enum, typing, contextlib, functools, dataclasses
+# - collections, queue, statistics, datetime, traceback
+
+# 可选依赖 (推荐安装以获得更好体验)
+
+# 终端美化和彩色输出
+rich>=12.0.0
+
+# 进度条支持
+tqdm>=4.64.0
+
+# YAML配置文件支持 (如果使用YAML配置)
+PyYAML>=6.0
+
+# 数据分析支持 (用于日志分析和指标处理)
+pandas>=1.5.0
+numpy>=1.21.0
+
+# 可视化支持 (用于指标可视化)
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# 开发和测试依赖
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.991

@@ -1,0 +1,55 @@
+# Logging 模块配置示例
+
+logging:
+  # 全局日志级别
+  level: INFO
+  
+  # 分布式配置
+  distributed:
+    rank: 0
+    world_size: 1
+    log_all_ranks: false
+    aggregate_metrics: true
+  
+  # 控制台输出配置
+  console:
+    enabled: true
+    level: INFO
+    use_colors: true
+    show_progress: true
+    table_mode: false
+    formatter:
+      type: color
+      options:
+        format_string: "{timestamp} [{level}] {logger_name}: {message}"
+        timestamp_format: "%H:%M:%S"
+  
+  # 文件输出配置
+  file:
+    enabled: true
+    log_dir: "logs"
+    filename: "train.log"
+    level: DEBUG
+    encoding: "utf-8"
+    # 文件滚动配置
+    rotation: "size"  # size, time, both, none
+    max_size: 10485760  # 10MB
+    max_files: 5
+    compression: "gz"  # gz, zip, none
+    formatter:
+      type: plain
+      options:
+        format_string: "{timestamp} [{level}] {logger_name}: {message}"
+        timestamp_format: "%Y-%m-%d %H:%M:%S"
+  
+  # JSON输出配置
+  json:
+    enabled: true
+    log_dir: "logs"
+    filename: "logs.jsonl"
+    metrics_filename: "metrics.jsonl"
+    separate_metrics: true
+    timestamp_format: "iso"  # iso, unix, unix_ms
+    indent: null  # null为紧凑格式
+    include_fields: []
+    exclude_fields: ["raw_line"]

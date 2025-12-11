@@ -1,0 +1,17 @@
+# 可选依赖 - 模型库
+timm>=0.6.0                    # PyTorch Image Models
+
+# 可选依赖 - 导出格式
+onnx>=1.10.0                   # ONNX导出
+onnxruntime>=1.10.0            # ONNX推理验证
+
+# 可选依赖 - 推理优化（按需安装）
+openvino-dev>=2022.1.0       # OpenVINO导出
+tensorrt>=8.0.0              # TensorRT导出
+
+# 可选依赖 - 进度条
+tqdm>=4.60.0
+
+# 测试依赖
+pytest>=7.0.0
+pytest-cov>=3.0.0
