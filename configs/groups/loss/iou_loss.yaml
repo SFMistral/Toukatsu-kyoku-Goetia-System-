@@ -1,0 +1,7 @@
+# IoU Loss 配置
+loss:
+  type: IoULoss
+  weight: 1.0
+  mode: giou  # iou / giou / diou / ciou
+  reduction: mean
+  eps: 1.0e-6

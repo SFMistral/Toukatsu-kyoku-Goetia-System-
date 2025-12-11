@@ -1,0 +1,27 @@
+# 模型默认配置
+model:
+  type: null
+  
+  backbone:
+    type: null
+    pretrained: true
+    frozen_stages: -1
+    out_indices: null
+  
+  neck:
+    type: null
+    in_channels: null
+    out_channels: 256
+  
+  head:
+    type: null
+    num_classes: null
+    in_channels: null
+    loss:
+      type: CrossEntropyLoss
+      weight: 1.0
+  
+  pretrained:
+    enabled: false
+    source: torchvision
+    path: null

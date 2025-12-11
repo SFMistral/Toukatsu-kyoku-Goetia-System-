@@ -1,0 +1,56 @@
+# 全局系统配置
+
+# 项目信息
+project_name: Goetia-System
+version: 1.0.0
+
+# 运行模式
+debug: false
+log_level: INFO  # DEBUG / INFO / WARNING / ERROR
+
+# 时区与本地化
+timezone: Asia/Shanghai
+locale: zh_CN
+
+# 全局路径配置
+paths:
+  experiments_dir: ./experiments
+  pretrained_dir: ./pretrained
+  temp_dir: ./temp
+  cache_dir: ./cache
+  data_dir: ./data
+
+# 注册器配置
+registry:
+  auto_scan: true
+  scan_paths:
+    - components/models
+    - components/datasets
+    - components/losses
+    - components/metrics
+    - components/augmentations
+    - components/optimizers
+    - components/schedulers
+    - components/hooks
+
+# 默认设备配置
+device:
+  type: auto  # auto / cuda / cpu
+  cuda_visible_devices: ${env:CUDA_VISIBLE_DEVICES,}
+
+# 随机种子
+seed: 42
+deterministic: false
+
+# 日志配置
+logging:
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  file:
+    enabled: true
+    path: logs/system.log
+    max_size: 10485760  # 10MB
+    backup_count: 5
+  console:
+    enabled: true
+    colorize: true

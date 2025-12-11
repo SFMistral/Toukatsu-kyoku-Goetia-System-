@@ -1,0 +1,43 @@
+# ResNet50 ImageNet 分类基线配置
+_base_:
+  - ../../defaults/model.yaml
+  - ../../defaults/dataset.yaml
+  - ../../defaults/optimizer.yaml
+  - ../../defaults/scheduler.yaml
+  - ../../defaults/augmentation.yaml
+  - ../../defaults/training.yaml
+
+model:
+  type: ImageClassifier
+  backbone:
+    type: ResNet
+    depth: 50
+    pretrained: true
+    out_indices: [4]
+  head:
+    type: LinearClsHead
+    num_classes: 1000
+    in_channels: 2048
+    loss:
+      type: CrossEntropyLoss
+      weight: 1.0
+
+dataset:
+  type: ImageNet
+  data_root: data/imagenet
+  num_classes: 1000
+
+training:
+  epochs: 90
+  batch_size: 256
+
+optimizer:
+  type: SGD
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0001
+
+scheduler:
+  type: StepLR
+  step_size: 30
+  gamma: 0.1

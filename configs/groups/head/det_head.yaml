@@ -1,0 +1,21 @@
+# 检测头配置
+head:
+  type: RetinaHead
+  num_classes: 80
+  in_channels: 256
+  stacked_convs: 4
+  feat_channels: 256
+  anchor_generator:
+    type: AnchorGenerator
+    octave_base_scale: 4
+    scales_per_octave: 3
+    ratios: [0.5, 1.0, 2.0]
+    strides: [8, 16, 32, 64, 128]
+  loss:
+    cls_loss:
+      type: FocalLoss
+      alpha: 0.25
+      gamma: 2.0
+    bbox_loss:
+      type: SmoothL1Loss
+      beta: 0.11

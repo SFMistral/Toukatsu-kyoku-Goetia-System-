@@ -1,0 +1,75 @@
+# U-Net 医学图像分割配置
+_base_:
+  - ../../defaults/model.yaml
+  - ../../defaults/dataset.yaml
+  - ../../defaults/optimizer.yaml
+  - ../../defaults/scheduler.yaml
+  - ../../defaults/training.yaml
+
+model:
+  type: UNet
+  backbone:
+    type: UNetEncoder
+    in_channels: 1
+    base_channels: 64
+    depth: 5
+  head:
+    type: UNetDecoder
+    num_classes: 2
+    in_channels: 64
+    loss:
+      type: DiceLoss
+      weight: 1.0
+      smooth: 1.0
+
+dataset:
+  type: MedicalSegmentation
+  data_root: data/medical
+  num_classes: 2
+  train:
+    ann_file: train.txt
+  val:
+    ann_file: val.txt
+
+augmentation:
+  train:
+    pipeline:
+      - type: Resize
+        size: [512, 512]
+      - type: RandomHorizontalFlip
+        prob: 0.5
+      - type: RandomVerticalFlip
+        prob: 0.5
+      - type: RandomRotate
+        degrees: 15
+      - type: ElasticTransform
+        alpha: 120
+        sigma: 12
+        prob: 0.5
+      - type: ToTensor
+      - type: Normalize
+        mean: [0.5]
+        std: [0.5]
+  val:
+    pipeline:
+      - type: Resize
+        size: [512, 512]
+      - type: ToTensor
+      - type: Normalize
+        mean: [0.5]
+        std: [0.5]
+
+training:
+  epochs: 100
+  batch_size: 8
+
+optimizer:
+  type: Adam
+  lr: 0.0001
+  weight_decay: 0.0001
+
+scheduler:
+  type: ReduceLROnPlateau
+  mode: min
+  factor: 0.5
+  patience: 10

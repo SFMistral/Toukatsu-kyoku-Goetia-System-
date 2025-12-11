@@ -1,0 +1,4 @@
+# 准确率指标配置
+metrics:
+  - type: Accuracy
+    topk: [1, 5]

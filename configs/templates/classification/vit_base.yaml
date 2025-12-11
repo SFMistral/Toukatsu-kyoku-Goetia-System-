@@ -1,0 +1,53 @@
+# ViT-Base 分类配置
+_base_:
+  - ../../defaults/model.yaml
+  - ../../defaults/dataset.yaml
+  - ../../defaults/optimizer.yaml
+  - ../../defaults/scheduler.yaml
+  - ../../defaults/augmentation.yaml
+  - ../../defaults/training.yaml
+
+model:
+  type: ImageClassifier
+  backbone:
+    type: VisionTransformer
+    variant: base
+    img_size: 224
+    patch_size: 16
+    embed_dim: 768
+    depth: 12
+    num_heads: 12
+    pretrained: true
+  head:
+    type: LinearClsHead
+    num_classes: 1000
+    in_channels: 768
+    loss:
+      type: CrossEntropyLoss
+      label_smoothing: 0.1
+
+dataset:
+  type: ImageNet
+  data_root: data/imagenet
+  num_classes: 1000
+
+training:
+  epochs: 300
+  batch_size: 1024
+  mixed_precision:
+    enabled: true
+    dtype: fp16
+
+optimizer:
+  type: AdamW
+  lr: 0.001
+  weight_decay: 0.05
+  layer_decay:
+    enabled: true
+    decay_rate: 0.65
+
+scheduler:
+  type: CosineAnnealingLR
+  warmup:
+    enabled: true
+    epochs: 5

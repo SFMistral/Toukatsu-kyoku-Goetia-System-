@@ -1,0 +1,54 @@
+# 训练默认配置
+training:
+  epochs: 100
+  batch_size: 32
+  num_workers: 4
+  
+  # 分布式训练
+  distributed:
+    enabled: false
+    backend: nccl
+    world_size: auto
+  
+  # 混合精度
+  mixed_precision:
+    enabled: false
+    dtype: fp16
+  
+  # 梯度累积
+  gradient_accumulation:
+    steps: 1
+  
+  # 梯度裁剪
+  gradient_clip:
+    enabled: false
+    max_norm: 1.0
+    norm_type: 2.0
+  
+  # 早停
+  early_stopping:
+    enabled: false
+    monitor: val_loss
+    patience: 10
+    mode: min
+  
+  # EMA
+  ema:
+    enabled: false
+    decay: 0.9999
+  
+  # 检查点
+  checkpoint:
+    save_interval: 1
+    save_best: true
+    max_keep: 5
+  
+  # 日志
+  logging:
+    interval: 50
+    tensorboard: true
+    wandb: false
+  
+  # 随机种子
+  seed: 42
+  deterministic: false

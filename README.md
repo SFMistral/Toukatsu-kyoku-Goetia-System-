@@ -1448,4 +1448,4 @@ python tools/validate_dataset.py \
 
 *Toukatsu-kyoku Goetia System v1.0*
 
-*统括局·哥耶提亚系统 - 让深度学习训练更简单*
+*统括局·盖提亚系统 - 让深度学习训练更简单*

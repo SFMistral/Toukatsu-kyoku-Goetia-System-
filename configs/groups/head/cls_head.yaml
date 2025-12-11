@@ -1,0 +1,8 @@
+# 分类头配置
+head:
+  type: LinearClsHead
+  num_classes: 1000
+  in_channels: 2048
+  loss:
+    type: CrossEntropyLoss
+    weight: 1.0

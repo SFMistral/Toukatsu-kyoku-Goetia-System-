@@ -1,0 +1,57 @@
+# FCOS 无锚框检测配置
+_base_:
+  - ../../defaults/model.yaml
+  - ../../defaults/dataset.yaml
+  - ../../defaults/optimizer.yaml
+  - ../../defaults/scheduler.yaml
+  - ../../defaults/training.yaml
+
+model:
+  type: FCOS
+  backbone:
+    type: ResNet
+    depth: 50
+    pretrained: true
+    frozen_stages: 1
+    out_indices: [1, 2, 3, 4]
+  neck:
+    type: FPN
+    in_channels: [256, 512, 1024, 2048]
+    out_channels: 256
+    num_outs: 5
+  head:
+    type: FCOSHead
+    num_classes: 80
+    in_channels: 256
+    stacked_convs: 4
+    feat_channels: 256
+    strides: [8, 16, 32, 64, 128]
+    loss:
+      cls_loss:
+        type: FocalLoss
+        alpha: 0.25
+        gamma: 2.0
+      bbox_loss:
+        type: GIoULoss
+      centerness_loss:
+        type: CrossEntropyLoss
+
+dataset:
+  type: COCO
+  data_root: data/coco
+  num_classes: 80
+
+training:
+  epochs: 12
+  batch_size: 2
+
+optimizer:
+  type: SGD
+  lr: 0.01
+  momentum: 0.9
+  weight_decay: 0.0001
+
+scheduler:
+  type: MultiStepLR
+  milestones: [8, 11]
+  gamma: 0.1

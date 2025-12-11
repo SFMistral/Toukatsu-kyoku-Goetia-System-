@@ -1,0 +1,14 @@
+# ViT-Large 骨干网络配置
+backbone:
+  type: VisionTransformer
+  variant: large
+  img_size: 224
+  patch_size: 16
+  embed_dim: 1024
+  depth: 24
+  num_heads: 16
+  mlp_ratio: 4.0
+  pretrained: true
+  drop_rate: 0.0
+  attn_drop_rate: 0.0
+  drop_path_rate: 0.1

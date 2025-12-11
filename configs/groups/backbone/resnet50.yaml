@@ -1,0 +1,10 @@
+# ResNet50 骨干网络配置
+backbone:
+  type: ResNet
+  depth: 50
+  pretrained: true
+  frozen_stages: -1
+  out_indices: [4]
+  norm_cfg:
+    type: BN
+    requires_grad: true

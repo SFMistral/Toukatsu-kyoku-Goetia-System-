@@ -1,0 +1,11 @@
+# 分割头配置
+head:
+  type: FCNHead
+  num_classes: 19
+  in_channels: 2048
+  channels: 512
+  num_convs: 2
+  concat_input: true
+  loss:
+    type: CrossEntropyLoss
+    ignore_index: 255

@@ -1,0 +1,33 @@
+# 数据增强默认配置
+augmentation:
+  train:
+    pipeline:
+      - type: RandomResizedCrop
+        size: 224
+        scale: [0.08, 1.0]
+        ratio: [0.75, 1.333]
+      - type: RandomHorizontalFlip
+        prob: 0.5
+      - type: ColorJitter
+        brightness: 0.4
+        contrast: 0.4
+        saturation: 0.4
+        hue: 0.1
+        prob: 0.8
+      - type: ToTensor
+      - type: Normalize
+        mean: [0.485, 0.456, 0.406]
+        std: [0.229, 0.224, 0.225]
+  
+  val:
+    pipeline:
+      - type: Resize
+        size: 256
+      - type: CenterCrop
+        size: 224
+      - type: ToTensor
+      - type: Normalize
+        mean: [0.485, 0.456, 0.406]
+        std: [0.229, 0.224, 0.225]
+  
+  batch_augments: []

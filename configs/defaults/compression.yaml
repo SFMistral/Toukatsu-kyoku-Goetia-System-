@@ -1,0 +1,30 @@
+# 模型压缩默认配置
+compression:
+  # 量化
+  quantization:
+    enabled: false
+    type: ptq  # ptq / qat
+    backend: tensorrt
+    calibration:
+      num_samples: 100
+      method: entropy  # entropy / minmax / percentile
+  
+  # 剪枝
+  pruning:
+    enabled: false
+    type: magnitude  # magnitude / structured
+    sparsity: 0.5
+    schedule:
+      type: gradual
+      start_epoch: 0
+      end_epoch: 50
+  
+  # 知识蒸馏
+  distillation:
+    enabled: false
+    teacher:
+      config: null
+      checkpoint: null
+    temperature: 4.0
+    alpha: 0.5
+    loss_type: kl_div  # kl_div / mse / cosine

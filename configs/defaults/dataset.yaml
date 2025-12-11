@@ -1,0 +1,33 @@
+# 数据集默认配置
+dataset:
+  type: null
+  data_root: null
+  num_classes: null
+  classes_file: null
+  
+  train:
+    ann_file: null
+    data_prefix: train
+    pipeline: null
+  
+  val:
+    ann_file: null
+    data_prefix: val
+    pipeline: null
+  
+  test:
+    ann_file: null
+    data_prefix: test
+    pipeline: null
+  
+  # DataLoader 配置
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  drop_last: false
+  shuffle: true
+  
+  # 采样配置
+  sampler:
+    type: null
+    replacement: false

@@ -1,0 +1,84 @@
+# YOLOv8 COCO 检测配置
+_base_:
+  - ../../defaults/model.yaml
+  - ../../defaults/dataset.yaml
+  - ../../defaults/optimizer.yaml
+  - ../../defaults/scheduler.yaml
+  - ../../defaults/training.yaml
+
+model:
+  type: YOLO
+  backbone:
+    type: CSPDarknet
+    variant: yolov8
+    depth_multiple: 0.33
+    width_multiple: 0.50
+    pretrained: true
+  neck:
+    type: YOLOPAFPN
+    in_channels: [256, 512, 1024]
+    out_channels: 256
+  head:
+    type: YOLOHead
+    num_classes: 80
+    in_channels: [256, 256, 256]
+    loss:
+      type: YOLOLoss
+      box_weight: 7.5
+      cls_weight: 0.5
+      dfl_weight: 1.5
+
+dataset:
+  type: COCO
+  data_root: data/coco
+  num_classes: 80
+  train:
+    ann_file: annotations/instances_train2017.json
+    data_prefix: train2017
+  val:
+    ann_file: annotations/instances_val2017.json
+    data_prefix: val2017
+
+augmentation:
+  train:
+    pipeline:
+      - type: Mosaic
+        img_scale: [640, 640]
+        prob: 1.0
+      - type: RandomAffine
+        degrees: 0.0
+        translate: 0.1
+        scale: 0.5
+        shear: 0.0
+      - type: MixUp
+        prob: 0.1
+      - type: HSVAugment
+        hgain: 0.015
+        sgain: 0.7
+        vgain: 0.4
+      - type: RandomHorizontalFlip
+        prob: 0.5
+      - type: ToTensor
+      - type: Normalize
+        mean: [0.0, 0.0, 0.0]
+        std: [1.0, 1.0, 1.0]
+
+training:
+  epochs: 500
+  batch_size: 16
+  mixed_precision:
+    enabled: true
+
+optimizer:
+  type: SGD
+  lr: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  nesterov: true
+
+scheduler:
+  type: CosineAnnealingLR
+  warmup:
+    enabled: true
+    epochs: 3
+    momentum: 0.8

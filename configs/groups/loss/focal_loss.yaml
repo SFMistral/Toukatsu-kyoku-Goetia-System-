@@ -1,0 +1,7 @@
+# Focal Loss 配置
+loss:
+  type: FocalLoss
+  weight: 1.0
+  alpha: 0.25
+  gamma: 2.0
+  reduction: mean

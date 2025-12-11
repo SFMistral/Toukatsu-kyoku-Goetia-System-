@@ -1,0 +1,6 @@
+# mIoU 指标配置（语义分割）
+metrics:
+  - type: MeanIoU
+    num_classes: 19
+    ignore_index: 255
+    reduce_zero_label: false

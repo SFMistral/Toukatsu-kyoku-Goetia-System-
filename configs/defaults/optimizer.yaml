@@ -1,0 +1,18 @@
+# 优化器默认配置
+optimizer:
+  type: AdamW
+  lr: 0.001
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+  eps: 1.0e-8
+  
+  # 参数组配置
+  paramwise_cfg:
+    bias_lr_mult: 1.0
+    bias_decay_mult: 0.0
+    norm_decay_mult: 0.0
+    
+  # Layer-wise learning rate decay
+  layer_decay:
+    enabled: false
+    decay_rate: 0.75

@@ -1,0 +1,14 @@
+# Swin-Base 骨干网络配置
+backbone:
+  type: SwinTransformer
+  variant: base
+  img_size: 224
+  patch_size: 4
+  embed_dim: 128
+  depths: [2, 2, 18, 2]
+  num_heads: [4, 8, 16, 32]
+  window_size: 7
+  mlp_ratio: 4.0
+  pretrained: true
+  drop_rate: 0.0
+  drop_path_rate: 0.5

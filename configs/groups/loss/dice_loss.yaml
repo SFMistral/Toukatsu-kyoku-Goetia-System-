@@ -1,0 +1,8 @@
+# Dice Loss 配置
+loss:
+  type: DiceLoss
+  weight: 1.0
+  smooth: 1.0
+  exponent: 2
+  reduction: mean
+  ignore_index: 255

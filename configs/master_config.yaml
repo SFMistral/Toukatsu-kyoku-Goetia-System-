@@ -1,0 +1,71 @@
+# Master 端运行时配置
+
+# API 服务器配置
+server:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+  debug: false
+  cors:
+    enabled: true
+    origins: ["*"]
+
+# WebSocket 配置
+websocket:
+  heartbeat_interval: 30  # 秒
+  timeout: 120  # 秒
+  max_connections: 100
+  ping_timeout: 10
+
+# 数据库配置
+database:
+  type: sqlite  # sqlite / postgresql / mysql
+  host: localhost
+  port: 5432
+  name: goetia
+  user: ${env:DB_USER,goetia}
+  password: ${env:DB_PASSWORD,}
+  pool_size: 10
+  echo: false
+
+# 存储路径配置
+storage:
+  experiments_dir: ./experiments
+  checkpoints_dir: ./checkpoints
+  logs_dir: ./logs
+  temp_dir: ./temp
+  exports_dir: ./exports
+  reports_dir: ./reports
+
+# 安全配置
+security:
+  secret_key: ${env:SECRET_KEY,change-me-in-production}
+  token_expire_hours: 24
+  algorithm: HS256
+  enable_auth: true
+
+# LLM API 配置
+llm:
+  provider: openai  # openai / anthropic / local
+  api_key: ${env:LLM_API_KEY,}
+  model: gpt-4
+  temperature: 0.7
+  max_tokens: 4096
+  timeout: 60
+
+# 节点管理配置
+node_manager:
+  health_check_interval: 60  # 秒
+  offline_threshold: 180  # 秒
+  auto_reconnect: true
+  max_retry: 3
+
+# 任务调度配置
+task_scheduler:
+  max_concurrent_tasks: 10
+  queue_size: 100
+  priority_levels: 5
+  default_priority: 3
+  retry_on_failure: true
+  max_retries: 3
+  retry_delay: 60  # 秒

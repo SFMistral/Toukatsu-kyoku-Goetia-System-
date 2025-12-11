@@ -1,0 +1,14 @@
+# Swin-Tiny 骨干网络配置
+backbone:
+  type: SwinTransformer
+  variant: tiny
+  img_size: 224
+  patch_size: 4
+  embed_dim: 96
+  depths: [2, 2, 6, 2]
+  num_heads: [3, 6, 12, 24]
+  window_size: 7
+  mlp_ratio: 4.0
+  pretrained: true
+  drop_rate: 0.0
+  drop_path_rate: 0.2

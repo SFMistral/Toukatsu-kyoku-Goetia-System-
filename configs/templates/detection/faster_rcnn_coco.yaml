@@ -1,0 +1,57 @@
+# Faster R-CNN COCO 检测配置
+_base_:
+  - ../../defaults/model.yaml
+  - ../../defaults/dataset.yaml
+  - ../../defaults/optimizer.yaml
+  - ../../defaults/scheduler.yaml
+  - ../../defaults/training.yaml
+
+model:
+  type: FasterRCNN
+  backbone:
+    type: ResNet
+    depth: 50
+    pretrained: true
+    frozen_stages: 1
+    out_indices: [1, 2, 3, 4]
+  neck:
+    type: FPN
+    in_channels: [256, 512, 1024, 2048]
+    out_channels: 256
+    num_outs: 5
+  head:
+    type: FasterRCNNHead
+    num_classes: 80
+    rpn:
+      anchor_scales: [8]
+      anchor_ratios: [0.5, 1.0, 2.0]
+      nms_thresh: 0.7
+    roi:
+      pool_size: 7
+      nms_thresh: 0.5
+
+dataset:
+  type: COCO
+  data_root: data/coco
+  num_classes: 80
+  train:
+    ann_file: annotations/instances_train2017.json
+    data_prefix: train2017
+  val:
+    ann_file: annotations/instances_val2017.json
+    data_prefix: val2017
+
+training:
+  epochs: 12
+  batch_size: 2
+
+optimizer:
+  type: SGD
+  lr: 0.02
+  momentum: 0.9
+  weight_decay: 0.0001
+
+scheduler:
+  type: MultiStepLR
+  milestones: [8, 11]
+  gamma: 0.1

@@ -1,0 +1,7 @@
+# 交叉熵损失配置
+loss:
+  type: CrossEntropyLoss
+  weight: 1.0
+  reduction: mean
+  label_smoothing: 0.0
+  ignore_index: -100
