@@ -211,7 +211,6 @@ reports/
 
 # 数据集
 data/
-datasets/
 
 # 预训练模型
 pretrained/
