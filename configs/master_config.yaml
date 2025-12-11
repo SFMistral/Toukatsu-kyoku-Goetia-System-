@@ -27,6 +27,15 @@ database:
   password: user123456
   pool_size: 10
   echo: false
+  # 连接池配置
+  pool_timeout: 30
+  pool_recycle: 3600
+  max_overflow: 20
+  # 连接参数
+  charset: utf8mb4
+  connect_args:
+    autocommit: false
+    check_same_thread: false
 
 # 存储路径配置
 storage:

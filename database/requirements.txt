@@ -1,0 +1,13 @@
+# 数据库相关依赖
+SQLAlchemy>=1.4.0,<2.0.0
+PyMySQL>=1.0.0
+alembic>=1.8.0
+
+# 密码哈希
+bcrypt>=4.0.0
+
+# 连接池
+psycopg2-binary>=2.9.0  # PostgreSQL支持（可选）
+
+# 云数据库支持（可选）
+pyodbc>=4.0.0  # Azure SQL Server支持

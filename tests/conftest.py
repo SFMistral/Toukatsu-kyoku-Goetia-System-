@@ -103,3 +103,7 @@ def logging_config(temp_dir):
             'separate_metrics': True
         }
     }
+
+
+# 导入数据库测试夹具
+from tests.fixtures.database_fixtures import *
