@@ -107,3 +107,9 @@ def logging_config(temp_dir):
 
 # 导入数据库测试夹具
 from tests.fixtures.database_fixtures import *
+
+# 导入模型测试夹具
+from tests.fixtures.model_fixtures import *
+
+# 导入钩子测试夹具
+from tests.fixtures.hook_fixtures import *

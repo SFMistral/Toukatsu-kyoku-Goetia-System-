@@ -1,0 +1,7 @@
+# Schedulers 模块依赖
+# 核心依赖 (环境已有)
+# torch>=1.10.0
+# numpy>=1.20.0
+
+# 无额外依赖
+# 所有调度器基于 PyTorch 内置的 lr_scheduler 实现

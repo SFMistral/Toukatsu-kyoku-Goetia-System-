@@ -1,0 +1,20 @@
+# Hooks 模块依赖
+# 注意：pytorch 和 cuda 已在环境中安装
+
+# 核心依赖
+numpy>=1.19.0
+
+# 可视化（可选）
+matplotlib>=3.3.0
+Pillow>=8.0.0
+
+# 日志后端（可选）
+tensorboard>=2.4.0
+# wandb>=0.12.0  # Weights & Biases（按需安装）
+# mlflow>=1.20.0  # MLflow（按需安装）
+
+# 性能分析（可选）
+psutil>=5.8.0  # CPU 内存监控
+
+# 分割可视化边缘检测（可选）
+scipy>=1.6.0

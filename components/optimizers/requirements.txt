@@ -1,0 +1,9 @@
+# Optimizers 模块依赖
+# 核心依赖 (环境已有)
+# torch>=1.10.0
+# numpy>=1.20.0
+
+# 可选依赖 - 高效优化器
+# apex  # NVIDIA apex for FusedAdamW (需要从源码安装)
+# deepspeed>=0.9.0  # DeepSpeed for FusedAdam
+# bitsandbytes>=0.41.0  # 8-bit Adam optimizer
